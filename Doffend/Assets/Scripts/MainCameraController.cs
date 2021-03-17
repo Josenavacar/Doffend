@@ -40,6 +40,6 @@ public class MainCameraController : MonoBehaviour
 
     private float _calculateCameraSize()
     {
-        return 1.5f;
+        return 2f;
     }
 }

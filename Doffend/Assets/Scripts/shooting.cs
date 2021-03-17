@@ -15,6 +15,9 @@ public class shooting : MonoBehaviour
     private bool _canShoot = true;
     private Camera _mainC;
 
+    private bool isHeld = false;
+    private static int shotsFired = 0;
+
     private void Awake()
     {
         _playerInput = new PlayerInput();
@@ -34,7 +37,8 @@ public class shooting : MonoBehaviour
     void Start()
     {
         _mainC = Camera.main;
-        _playerInput.Player.Shoot.performed += ctx => FireBullet();     
+        _playerInput.Player.Shoot.performed += ctx => FireBullet();
+        _playerInput.Player.Secondary.performed += ctx => ShootBarrage();
     }
 
     IEnumerator CanShoot()
@@ -44,10 +48,20 @@ public class shooting : MonoBehaviour
         _canShoot = true;
     }
 
-
+    IEnumerator CanSecondary()
+    {
+        _canShoot = false;
+        yield return new WaitForSeconds(.1f);
+        _canShoot = true;
+    }
 
     void Update()
     {
+        if(isHeld)
+        {
+            FireBullet();
+        }
+
         // Rotation
         Vector2 mouseScreenPosition = _playerInput.Player.MousePosition.ReadValue<Vector2>();
         Vector3 mouseWorldPosition = _mainC.ScreenToWorldPoint(mouseScreenPosition);
@@ -66,6 +80,25 @@ public class shooting : MonoBehaviour
         mousePosition = _mainC.ScreenToWorldPoint(mousePosition);
         GameObject bulletClone = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation);
         bulletClone.SetActive(true);
-        StartCoroutine(CanShoot());
+        if(isHeld)
+        {
+            StartCoroutine(CanSecondary());
+        }
+        else
+        {
+            StartCoroutine(CanShoot());
+        }
+    }
+
+    private void ShootBarrage()
+    {
+        if(!isHeld)
+        {
+            isHeld = true;
+        }
+        else
+        {
+            isHeld = false;
+        }
     }
 }
