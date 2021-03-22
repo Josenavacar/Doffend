@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
 
         if(currentHP == 1)
         {
+            lifeCounter.text = "You dedxd";
             KillPlayer();
         }
         else
