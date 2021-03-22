@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0137859285, y: -0.022100568}
+  m_Offset: {x: 0.0036586523, y: -0.019850016}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12631744, y: 0.29181314}
+  m_Size: {x: 0.22759032, y: 0.30531597}
   m_EdgeRadius: 0
 --- !u!114 &4569168058423563893
 MonoBehaviour:
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelsPerMeter: 16
-  movementSpeed: 16
-  jumpHeight: 4
+  movementSpeed: 4
+  jumpHeight: 0.6
   timeToJumpApex: 0.3
   joyStickDeadZone: 0.5
   MaxNumInAirJumps: 1
@@ -180,7 +180,7 @@ MonoBehaviour:
     m_Bits: 256
   numHorizontalRays: 4
   numVerticalRays: 4
-  _collider: {fileID: 0}
+  _collider: {fileID: 4569168058423563894}
   collisions: 0
 --- !u!95 &4569168058423563889
 Animator:
@@ -226,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4569168059387490340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.027, y: 0.058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4569168058423563895}
@@ -244,5 +244,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557f3d0b80c273f4f865f9602f9ef96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2538995837518569871, guid: 179f5243b908f794e9e82e50256ad471, type: 3}
+  bullet: {fileID: 5263118019489508132, guid: 179f5243b908f794e9e82e50256ad471, type: 3}
   bulletDirection: {fileID: 4569168059387494363}
