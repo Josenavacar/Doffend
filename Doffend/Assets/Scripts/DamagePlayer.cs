@@ -21,7 +21,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if(other.name == "Player" || other.tag == "Player")
         {
-            levelManager.KillPlayer();
+            levelManager.DamagePlayer();
         }
     }
 }

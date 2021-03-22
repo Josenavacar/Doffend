@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public GameObject Player;
+    public Text lifeCounter;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,16 @@ public class LevelManager : MonoBehaviour
 
     public void DamagePlayer()
     {
-        //Player.
+        int currentHP = int.Parse(lifeCounter.text.ToString());
+
+        if(currentHP == 1)
+        {
+            KillPlayer();
+        }
+        else
+        {
+            int HP_after_damage = currentHP - 1;
+            lifeCounter.text = HP_after_damage.ToString();
+        }
     }
 }
