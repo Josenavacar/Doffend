@@ -21,7 +21,6 @@ public class LevelManager : MonoBehaviour
 
     public void KillPlayer()
     {
-        Debug.Log("Player Ded");
         Destroy(Player);
     }
 
@@ -31,7 +30,7 @@ public class LevelManager : MonoBehaviour
 
         if(currentHP == 1)
         {
-            lifeCounter.text = "You dedxd";
+            lifeCounter.text = "You died";
             KillPlayer();
         }
         else
