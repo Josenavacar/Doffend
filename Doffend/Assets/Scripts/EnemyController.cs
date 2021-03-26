@@ -9,17 +9,23 @@ public class EnemyController : MonoBehaviour
     private float minDistance = 1f;
     private float range;
 
-    private Rigidbody2D m_Rigidbody;
+    public Rigidbody2D m_Rigidbody;
 
     // Update is called once per frame
     void Update()
     {
         range = Vector2.Distance(transform.position, target.position);
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        
-        if(range < 0.4)
+
+        if(target != null)
         {
-            m_Rigidbody.AddForce(-Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime) * 5f);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            if(range < 0.4)
+            {
+
+                m_Rigidbody.AddForce(-target.position * 200 * Time.deltaTime);
+            }
         }
+        
+        
     }
 }
