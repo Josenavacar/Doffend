@@ -4,24 +4,17 @@ using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
-    LevelManager levelManager;
+    public GameObject player;
+    private Health playerScript;
+
     // Start is called before the first frame update
     void Start()
     {
-        levelManager = FindObjectOfType<LevelManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerScript = player.GetComponent<Health>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.name == "Player" || other.tag == "Player")
-        {
-            levelManager.DamagePlayer();
-        }
+        playerScript.health -= 0.5f;
     }
 }
