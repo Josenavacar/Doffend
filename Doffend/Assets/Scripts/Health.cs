@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     public float health = 5;
     public int numOfHearts = 5;
+    public GameObject player;
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite halfHeart;
@@ -22,6 +23,17 @@ public class Health : MonoBehaviour
         
         healthCheck();
     }
+
+    public void Die()
+    {
+        for(int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].sprite = emptyHeart;
+        }
+        
+        Destroy(player);
+    }
+
 
     public void healthCheck()
     {

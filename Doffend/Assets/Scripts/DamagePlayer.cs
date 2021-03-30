@@ -16,5 +16,10 @@ public class DamagePlayer : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         playerScript.health -= 0.5f;
+
+        if(playerScript.health <= 0)
+        {
+            playerScript.Die();
+        }
     }
 }
