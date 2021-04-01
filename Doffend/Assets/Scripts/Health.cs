@@ -8,10 +8,13 @@ public class Health : MonoBehaviour
     public float health = 5;
     public int numOfHearts = 5;
     public GameObject player;
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite halfHeart;
-    public Sprite emptyHeart;
+    public GameObject canvas;
+    private Health_UI UIScript;
+
+    void Start()
+    {
+        UIScript = canvas.GetComponent<Health_UI>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,54 +23,25 @@ public class Health : MonoBehaviour
         {
             health = numOfHearts;
         }
-        
-        healthCheck();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Goblin")
+        {
+            health -= 0.5f;
+            UIScript.updateUI();
+
+            if(health <= 0)
+            {
+                Die();
+            }
+        }
     }
 
     public void Die()
     {
-        for(int i = 0; i < hearts.Length; i++)
-        {
-            hearts[i].sprite = emptyHeart;
-        }
-        
+        UIScript.deathUI();
         Destroy(player);
-    }
-
-
-    public void healthCheck()
-    {
-        bool half = false;
-        int auxHealth = (int)health;
-        
-        if(health*10 % 10 != 0)
-        {
-            half = true;
-        }
-
-        for(int i = 0; i < hearts.Length; i++)
-        {
-            if(i < auxHealth)
-            {
-                hearts[i].sprite = fullHeart;   
-            } 
-            else if(i >= auxHealth && half)
-            {
-                hearts[i].sprite = halfHeart;
-                half = false;
-            }
-            else {
-                hearts[i].sprite = emptyHeart;
-            }
-
-
-            if(i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            } else 
-            {
-                hearts[i].enabled = false;
-            }
-        }
     }
 }
