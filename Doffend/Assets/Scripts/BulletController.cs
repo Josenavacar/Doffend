@@ -8,8 +8,6 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float speed = 4f;
 
-
-
     void Start()
     {
         
@@ -31,9 +29,16 @@ public class BulletController : MonoBehaviour
         StartCoroutine(DestroyBulletAfterTime());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(gameObject);
+        if(other.tag == "Goblin")
+        {
+            GameObject goblin = other.gameObject;
+            Goblin_Health script = goblin.GetComponent<Goblin_Health>();
+            script.hitPoints -= 1;
+
+            Destroy(gameObject);
+        }
     }
 
 }
