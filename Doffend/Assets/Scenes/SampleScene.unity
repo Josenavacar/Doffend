@@ -324,10 +324,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb8da4089eb65147b9f1ecb5bcb9145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXDistance: 4
-  maxYDistance: 0
   zoomFactor: 10
   player: {fileID: 1174905257}
+  YMaxEnabled: 0
+  YMaxValue: 0
+  YMinEnabled: 1
+  YMinValue: -7.5
+  XMaxEnabled: 1
+  XMaxValue: 11.5
+  XMinEnabled: 1
+  XMinValue: 4.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -461,12 +467,12 @@ PrefabInstance:
     - target: {fileID: 4569168058423563895, guid: 675882560d9881345ab54fae95b080ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.694
+      value: 7.53
       objectReference: {fileID: 0}
     - target: {fileID: 4569168058423563895, guid: 675882560d9881345ab54fae95b080ed,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.859
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 4569168058423563895, guid: 675882560d9881345ab54fae95b080ed,
         type: 3}
