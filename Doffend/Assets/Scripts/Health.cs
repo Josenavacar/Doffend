@@ -42,6 +42,6 @@ public class Health : MonoBehaviour
     public void Die()
     {
         UIScript.deathUI();
-        Destroy(player);
+        Application.LoadLevel("Menu");
     }
 }

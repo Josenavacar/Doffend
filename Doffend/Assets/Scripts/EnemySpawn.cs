@@ -13,17 +13,12 @@ public class EnemySpawn : MonoBehaviour
       InvokeRepeating("Spawn", spawnTime, spawnTime);
    }
 
-   // Update is called once per frame
-   void Update()
-   {
-      
-   }
-
    void Spawn()
    {
-   spawnPosition.x = 0.141f;
-   spawnPosition.y = -8.176f;
+      spawnPosition.x = 0.141f;
+      spawnPosition.y = -8.176f;
 
-   Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Length -1)], spawnPosition, Quaternion.identity);
+      Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Length -1)], spawnPosition, Quaternion.identity);
    }
+   
 }
