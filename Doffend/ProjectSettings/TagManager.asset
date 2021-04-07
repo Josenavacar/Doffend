@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - Goblin
+  - Enemy
   layers:
   - Default
   - TransparentFX
