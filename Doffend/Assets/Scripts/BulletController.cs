@@ -24,16 +24,6 @@ public class BulletController : MonoBehaviour
         StartCoroutine(DestroyBulletAfterTime());
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.tag == "Goblin")
-        {
-            GameObject goblin = other.gameObject;
-            Goblin_Health script = goblin.GetComponent<Goblin_Health>();
-            script.hitPoints -= 1;
-
-            Destroy(gameObject);
-        }
-    }
+   
 
 }

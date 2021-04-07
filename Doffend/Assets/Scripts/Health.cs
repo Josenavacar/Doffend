@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Goblin")
+        if(other.gameObject.layer == 12)
         {
             health -= 0.5f;
             UIScript.updateUI();

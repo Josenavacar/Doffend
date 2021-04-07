@@ -19,4 +19,14 @@ public class Goblin_Health : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "PlayerProjectile")
+        {
+            hitPoints -= 1;
+
+            Destroy(other.gameObject);
+        }
+    }
 }

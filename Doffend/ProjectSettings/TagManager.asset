@@ -7,6 +7,7 @@ TagManager:
   - Projectile
   - Goblin
   - Enemy
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - Health
   - Ground
-  - 
+  - Goblin
   - 
   - 
   - 

@@ -64,7 +64,7 @@ public class WaveSpawn : MonoBehaviour
         if(searchCountdown <= 0)
         {
             searchCountdown = 1f;
-            if(GameObject.FindGameObjectWithTag("Goblin") == null)
+            if(GameObject.FindGameObjectWithTag("Enemy") == null)
             {
                 return false;
             }

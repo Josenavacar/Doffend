@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6903291346508917770}
   - component: {fileID: 6903291346508917773}
   - component: {fileID: 6903291346508917772}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: GoblinGFX
   m_TagString: Goblin
   m_Icon: {fileID: 0}
