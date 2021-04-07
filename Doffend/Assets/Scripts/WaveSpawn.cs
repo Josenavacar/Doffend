@@ -22,6 +22,8 @@ public class WaveSpawn : MonoBehaviour
     public List<Wave> waves;
     public int enemiesLeft;
     private int nextWave = 0;
+    private float timeElapsed = 0;
+    private GameObject Score;
 
 
     bool done = false;
@@ -29,6 +31,8 @@ public class WaveSpawn : MonoBehaviour
     void Start()
     {
         waveCountdown = timeBetweenWaves; 
+        Score = GameObject.Find("Score");
+
     }
 
     // Update is called once per frame
@@ -36,6 +40,7 @@ public class WaveSpawn : MonoBehaviour
     {
         if(state == SpawnState.WAITING)
         {
+            timeElapsed += Time.deltaTime;
             if(!EnemyIsAlive())
             {
                 state = SpawnState.COUNTING;
@@ -53,8 +58,15 @@ public class WaveSpawn : MonoBehaviour
             }
         }
 
-        if(state == SpawnState.FINISHED)
+        if(state == SpawnState.FINISHED && !done)
         {
+            int timeToScore = (int) Mathf.Max(0, 50 - timeElapsed) * 5;
+            Score.GetComponent<Score_Update>().score += timeToScore;
+            Debug.Log("Time elapsed: " + timeElapsed);
+            Debug.Log("Time to Score: " + timeToScore);
+            Debug.Log("Final Score: " + Score.GetComponent<Score_Update>().score);
+            done = true;
+            PlayerPrefs.SetInt("score", Score.GetComponent<Score_Update>().score);
             Application.LoadLevel("Menu");
         }
 

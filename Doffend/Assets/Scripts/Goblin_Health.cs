@@ -6,11 +6,14 @@ public class Goblin_Health : MonoBehaviour
 {
     public float hitPoints = 2;
     private WaveSpawn script;
+    private GameObject score;
     // Start is called before the first frame update
     void Start()
     {
         GameObject wavemanagement = GameObject.Find("WaveManager");
         script = wavemanagement.GetComponent<WaveSpawn>();
+
+        score = GameObject.Find("Score");
     }
 
     // Update is called once per frame
@@ -19,6 +22,7 @@ public class Goblin_Health : MonoBehaviour
         if(hitPoints <= 0)
         {
             script.enemiesLeft--;
+            score.GetComponent<Score_Update>().score += 10;
             Destroy(gameObject);
         }
     }
