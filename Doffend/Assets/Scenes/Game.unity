@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 503835579}
   - component: {fileID: 503835581}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: WaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,9 +464,15 @@ MonoBehaviour:
   spawn: {fileID: 80058409}
   waves:
   - name: Wave 1
-    enemy: {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02, type: 3}
-    count: 10
+    enemy:
+    - {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02, type: 3}
+    - {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02, type: 3}
+    - {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02, type: 3}
+    - {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02, type: 3}
+    - {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02, type: 3}
+    - {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02, type: 3}
     rate: 2
+  enemiesLeft: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

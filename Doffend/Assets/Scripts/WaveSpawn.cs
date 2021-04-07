@@ -8,11 +8,10 @@ public class WaveSpawn : MonoBehaviour
     public class Wave
     {
         public string name;
-        public GameObject enemy;
-        public int count;
+        public List<GameObject> enemy;
         public float rate;
     }
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    public enum SpawnState { SPAWNING, WAITING, COUNTING, FINISHED };
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
     public Transform spawn;
@@ -20,8 +19,12 @@ public class WaveSpawn : MonoBehaviour
     private float searchCountdown = 1f;
     private SpawnState state = SpawnState.COUNTING;
 
-    public Wave[] waves;
+    public List<Wave> waves;
+    public int enemiesLeft;
     private int nextWave = 0;
+
+
+    bool done = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +39,12 @@ public class WaveSpawn : MonoBehaviour
             if(!EnemyIsAlive())
             {
                 state = SpawnState.COUNTING;
-                nextWave++;
+                if(waves[nextWave++] != null)
+                {
+                    nextWave++;
+                }
+
+                state = SpawnState.FINISHED;
                 //Finish current wave
             }
             else
@@ -45,10 +53,16 @@ public class WaveSpawn : MonoBehaviour
             }
         }
 
+        if(state == SpawnState.FINISHED)
+        {
+            Application.LoadLevel("Menu");
+        }
+
         if (waveCountdown <= 0)
         {
             if(state != SpawnState.SPAWNING)
             {
+                enemiesLeft = waves[nextWave].enemy.Count;
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
         } 
@@ -60,6 +74,7 @@ public class WaveSpawn : MonoBehaviour
 
     bool EnemyIsAlive()
     {
+        /*
         searchCountdown -= Time.deltaTime;
         if(searchCountdown <= 0)
         {
@@ -75,14 +90,24 @@ public class WaveSpawn : MonoBehaviour
         }
         
         return true;
+        */
+
+        if(enemiesLeft == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     IEnumerator SpawnWave(Wave _wave)
     {
         state = SpawnState.SPAWNING;
-        for(int i = 0; i < _wave.count; i++)
+        for(int i = 0; i < _wave.enemy.Count; i++)
         {
-            SpawnEnemy(_wave.enemy);
+            SpawnEnemy(_wave.enemy[i]);
             yield return new WaitForSeconds(1f/_wave.rate);
         }
 
