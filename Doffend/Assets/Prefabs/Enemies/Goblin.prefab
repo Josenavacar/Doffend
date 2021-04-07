@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 6903291346508917770}
   - component: {fileID: 6903291346508917773}
   - component: {fileID: 6903291346508917772}
+  - component: {fileID: 1903913003793859264}
   m_Layer: 12
-  m_Name: GoblinGFX
+  m_Name: Goblin
   m_TagString: Goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,3 +227,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 2
+--- !u!114 &1903913003793859264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996819030631688954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75cec6aa774b0064ba239b84bfebf1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyDamage: 0.5

@@ -22,9 +22,10 @@ public class Goblin_Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "PlayerProjectile")
+        BulletController script = other.GetComponent<BulletController>();
+        if(script != null)
         {
-            hitPoints -= 1;
+            hitPoints -= script.damage;
 
             Destroy(other.gameObject);
         }

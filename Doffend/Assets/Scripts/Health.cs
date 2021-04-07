@@ -27,9 +27,10 @@ public class Health : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer == 12)
+        if(other.gameObject.GetComponent<Enemy>() != null)
         {
-            health -= 0.5f;
+            float damage = other.gameObject.GetComponent<Enemy>().enemyDamage;
+            health -= damage;
             UIScript.updateUI();
 
             if(health <= 0)
