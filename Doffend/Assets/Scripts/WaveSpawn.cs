@@ -24,9 +24,7 @@ public class WaveSpawn : MonoBehaviour
     private int nextWave = 0;
     private float timeElapsed = 0;
     private GameObject Score;
-
-
-    bool done = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -58,14 +56,10 @@ public class WaveSpawn : MonoBehaviour
             }
         }
 
-        if(state == SpawnState.FINISHED && !done)
+        if(state == SpawnState.FINISHED)
         {
             int timeToScore = (int) Mathf.Max(0, 50 - timeElapsed) * 5;
             Score.GetComponent<Score_Update>().score += timeToScore;
-            Debug.Log("Time elapsed: " + timeElapsed);
-            Debug.Log("Time to Score: " + timeToScore);
-            Debug.Log("Final Score: " + Score.GetComponent<Score_Update>().score);
-            done = true;
             PlayerPrefs.SetInt("score", Score.GetComponent<Score_Update>().score);
             Application.LoadLevel("Menu");
         }
