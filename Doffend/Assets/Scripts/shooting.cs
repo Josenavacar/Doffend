@@ -18,6 +18,8 @@ public class shooting : MonoBehaviour
     private bool isHeld = false;
     //private static int shotsFired = 0;
 
+    private AudioSource _audioSrc;
+
     private void Awake()
     {
         _playerInput = new PlayerInput();
@@ -39,6 +41,16 @@ public class shooting : MonoBehaviour
         _mainC = Camera.main;
         _playerInput.Player.Shoot.performed += ctx => FireBullet();
         _playerInput.Player.Secondary.performed += ctx => ShootBarrage();
+
+        _audioSrc = GetComponent<AudioSource>();
+    }
+
+    void PlayFireballSound()
+    {
+        _audioSrc.pitch = Random.Range(0.9f, 1.1f);
+        //play oneshot
+        _audioSrc.PlayOneShot(_audioSrc.clip);
+
     }
 
     IEnumerator CanShoot()
@@ -75,6 +87,8 @@ public class shooting : MonoBehaviour
     private void FireBullet()
     {
         if (!_canShoot) return;
+
+        PlayFireballSound();
 
         Vector2 mousePosition = _playerInput.Player.MousePosition.ReadValue<Vector2>();
         mousePosition = _mainC.ScreenToWorldPoint(mousePosition);
