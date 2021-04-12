@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public Transform target;
     public float speed = 2f;
-    private float minDistance = 1f;
+    //private float minDistance = 1f;
     private float range;
 
     public Rigidbody2D m_Rigidbody;

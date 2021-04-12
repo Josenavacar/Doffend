@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Health : MonoBehaviour
 {
@@ -43,6 +45,6 @@ public class Health : MonoBehaviour
     public void Die()
     {
         UIScript.deathUI();
-        Application.LoadLevel("Menu");
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -16,7 +16,7 @@ public class shooting : MonoBehaviour
     private Camera _mainC;
 
     private bool isHeld = false;
-    private static int shotsFired = 0;
+    //private static int shotsFired = 0;
 
     private void Awake()
     {

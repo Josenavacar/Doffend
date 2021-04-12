@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveSpawn : MonoBehaviour
 {
@@ -15,8 +17,6 @@ public class WaveSpawn : MonoBehaviour
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
     public Transform spawn;
-
-    private float searchCountdown = 1f;
     private SpawnState state = SpawnState.COUNTING;
 
     public List<Wave> waves;
@@ -30,6 +30,7 @@ public class WaveSpawn : MonoBehaviour
     {
         waveCountdown = timeBetweenWaves; 
         Score = GameObject.Find("Score");
+        
 
     }
 
@@ -61,7 +62,7 @@ public class WaveSpawn : MonoBehaviour
             int timeToScore = (int) Mathf.Max(0, 50 - timeElapsed) * 5;
             Score.GetComponent<Score_Update>().score += timeToScore;
             PlayerPrefs.SetInt("score", Score.GetComponent<Score_Update>().score);
-            Application.LoadLevel("Menu");
+            SceneManager.LoadScene("Menu");
         }
 
         if (waveCountdown <= 0)
@@ -80,24 +81,6 @@ public class WaveSpawn : MonoBehaviour
 
     bool EnemyIsAlive()
     {
-        /*
-        searchCountdown -= Time.deltaTime;
-        if(searchCountdown <= 0)
-        {
-            searchCountdown = 1f;
-            if(GameObject.FindGameObjectWithTag("Enemy") == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        
-        return true;
-        */
-
         if(enemiesLeft == 0)
         {
             return false;

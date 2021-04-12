@@ -8,30 +8,22 @@ public class Menu_Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        int last_score = 0;
+        //Find game objects
         GameObject last = GameObject.Find("LastScore");
         GameObject hi = GameObject.Find("HiScore");
 
-        if(PlayerPrefs.GetInt("score") != null)
-        {
-            last_score = PlayerPrefs.GetInt("score");
-        }
-
+        //Set last_score
+        int last_score = PlayerPrefs.GetInt("score", 0);
         last.GetComponent<TMP_Text>().text = "Last Score: " + last_score;
 
-
-        if(PlayerPrefs.GetInt("hiscore") == null)
+        //Find if we had a previous hiScore and compare it with the last score
+        int hiScore = PlayerPrefs.GetInt("hiscore", 0);
+        if(hiScore < PlayerPrefs.GetInt("score"))
         {
             PlayerPrefs.SetInt("hiscore", PlayerPrefs.GetInt("score"));
         }
-        else
-        {
-            if(PlayerPrefs.GetInt("hiscore") < PlayerPrefs.GetInt("score"))
-            {
-                PlayerPrefs.SetInt("hiscore", PlayerPrefs.GetInt("score"));
-            }
-        }
+
+        //Set hi score
         hi.GetComponent<TMP_Text>().text = "Hi-Score: " + PlayerPrefs.GetInt("hiscore");
     }
 }
