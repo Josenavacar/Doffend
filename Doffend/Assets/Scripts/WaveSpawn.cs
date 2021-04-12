@@ -34,6 +34,8 @@ public class WaveSpawn : MonoBehaviour
     public Wave waveStore;
     public GameObject goblinPrefab;
     private int waveCounter;
+
+    private Health playerHealth;
     
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,8 @@ public class WaveSpawn : MonoBehaviour
         enemiesManager.OnGoblinDeath += GoblinDied;
         waveCountdown = timeBetweenWaves; 
         Score = GameObject.Find("Score");
+        playerHealth = GameObject.Find("Player").GetComponent<Health>();
+        playerHealth.OnPlayerDeath += resetGoblins;
 
         //WavePrime
         wavePrime.amount = 6;
@@ -193,7 +197,7 @@ public class WaveSpawn : MonoBehaviour
         }
     }
 
-    void resetGoblins()
+    void resetGoblins(object sender, EventArgs e)
     {
         GameObject goblins = goblinPrefab;
 

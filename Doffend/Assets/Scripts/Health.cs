@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class Health : MonoBehaviour
     public GameObject player;
     public GameObject canvas;
     private Health_UI UIScript;
+
+    public event EventHandler OnPlayerDeath;
 
     void Start()
     {
@@ -37,14 +40,15 @@ public class Health : MonoBehaviour
 
             if(health <= 0)
             {
-                Die();
+                PlayerDeath();
             }
         }
     }
 
-    public void Die()
+    public void PlayerDeath()
     {
         UIScript.deathUI();
+        OnPlayerDeath?.Invoke(this, EventArgs.Empty);
         SceneManager.LoadScene("Menu");
     }
 }
