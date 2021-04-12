@@ -6,14 +6,19 @@ public class shooting : MonoBehaviour
 {
     [SerializeField]
     public GameObject bullet;
+    public GameObject bullet2;
 
     [SerializeField]
     public Transform bulletDirection;
 
     private PlayerInput _playerInput;
 
+    public PlayerController playerController;
+
     private bool _canShoot = true;
     private Camera _mainC;
+
+    public Transform bullets;
 
     private bool isHeld = false;
     //private static int shotsFired = 0;
@@ -36,6 +41,10 @@ public class shooting : MonoBehaviour
 
     void Start()
     {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        bullets = GameObject.Find("Bullets").transform;
+
+
         _mainC = Camera.main;
         _playerInput.Player.Shoot.performed += ctx => FireBullet();
         _playerInput.Player.Secondary.performed += ctx => ShootBarrage();
@@ -44,7 +53,7 @@ public class shooting : MonoBehaviour
     IEnumerator CanShoot()
     {
         _canShoot = false;
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.5f);
         _canShoot = true;
     }
 
@@ -59,7 +68,7 @@ public class shooting : MonoBehaviour
     {
         if(isHeld)
         {
-            FireBullet();
+            FireSecondary();
         }
 
         // Rotation
@@ -79,14 +88,25 @@ public class shooting : MonoBehaviour
         Vector2 mousePosition = _playerInput.Player.MousePosition.ReadValue<Vector2>();
         mousePosition = _mainC.ScreenToWorldPoint(mousePosition);
         GameObject bulletClone = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation);
+        bulletClone.transform.parent = bullets;
         bulletClone.SetActive(true);
+        
+        StartCoroutine(CanShoot());
+    }
+
+    private void FireSecondary()
+    {
+        if (!_canShoot) return;
+
+        Vector2 mousePosition = _playerInput.Player.MousePosition.ReadValue<Vector2>();
+        mousePosition = _mainC.ScreenToWorldPoint(mousePosition);
+        GameObject bulletClone = Instantiate(bullet2, bulletDirection.position, bulletDirection.rotation);
+        bulletClone.transform.parent = bullets;
+        bulletClone.SetActive(true);
+        
         if(isHeld)
         {
             StartCoroutine(CanSecondary());
-        }
-        else
-        {
-            StartCoroutine(CanShoot());
         }
     }
 
@@ -95,10 +115,12 @@ public class shooting : MonoBehaviour
         if(!isHeld)
         {
             isHeld = true;
+            playerController.enabled = false;
         }
         else
         {
             isHeld = false;
+            playerController.enabled = true;
         }
     }
 }

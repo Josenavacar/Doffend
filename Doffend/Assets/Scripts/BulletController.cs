@@ -8,11 +8,13 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float speed = 4f;
 
-    public float damage = 1f;
+    public float damage = .5f;
+
+    public float timeUntilDisappear = 3f;
 
     IEnumerator DestroyBulletAfterTime()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(timeUntilDisappear);
         Destroy(gameObject);
     }
 

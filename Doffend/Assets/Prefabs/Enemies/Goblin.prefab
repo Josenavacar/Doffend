@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 2
+  papa: {fileID: 0}
 --- !u!114 &1903913003793859264
 MonoBehaviour:
   m_ObjectHideFlags: 0
