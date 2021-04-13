@@ -87,7 +87,7 @@ MonoBehaviour:
       Value: 9264
       HasValue: 1
     Overlay:
-      Value: 1
+      Value: 0
       HasValue: 1
     Logging:
       Value: 0
@@ -330,8 +330,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../../Documents/FMOD Studio/Doffend/Doffend.fspro
-  sourceBankPath: ..\..\..\..\Documents\FMOD Studio\Doffend\Build
+  sourceProjectPath: Assets/Audio/Doffend/Doffend.fspro
+  sourceBankPath: Assets\Audio\Doffend\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
