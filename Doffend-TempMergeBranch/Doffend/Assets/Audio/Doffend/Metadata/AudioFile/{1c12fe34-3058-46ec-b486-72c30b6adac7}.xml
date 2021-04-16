@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{1c12fe34-3058-46ec-b486-72c30b6adac7}">
+		<property name="assetPath">
+			<value>Combat Music Loop.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>100.8</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c0870320-43c9-485a-9da5-52183810ef23}</destination>
+		</relationship>
+	</object>
+</objects>
