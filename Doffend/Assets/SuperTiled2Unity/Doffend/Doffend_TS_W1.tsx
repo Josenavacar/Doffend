@@ -51,6 +51,35 @@
    <object id="1" name="Collision" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
+ <tile id="40">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="Collision" x="0" y="32">
+    <polygon points="0,0 32,0 32,-32"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="41">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="Collision" x="0" y="0">
+    <polygon points="0,0 0,32 32,32"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="54">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="Collision" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="55">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="Collision" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="56">
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="Collision" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
  <tile id="59">
   <objectgroup draworder="index" id="2">
    <object id="1" name="Collision" x="0" y="0" width="32" height="32"/>
@@ -69,6 +98,20 @@
  <tile id="74">
   <objectgroup draworder="index" id="2">
    <object id="1" name="Collision" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="77">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="32">
+    <polygon points="0,0 32,0 32,-32"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="78">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="32" y="0" rotation="180">
+    <polygon points="0,-32 32,-32 32,0"/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="90">

@@ -8,16 +8,15 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float speed = 4f;
 
+    public float damage = .5f;
 
+    public float timeUntilDisappear = 3f;
 
-    void Start()
-    {
-        
-    }
+    public GameObject explosion;
 
     IEnumerator DestroyBulletAfterTime()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(timeUntilDisappear);
         Destroy(gameObject);
     }
 
@@ -31,9 +30,18 @@ public class BulletController : MonoBehaviour
         StartCoroutine(DestroyBulletAfterTime());
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(gameObject);
+        if(other.gameObject.GetComponent<Enemy>() != null)
+        {
+            Boom();
+            Destroy(gameObject);
+        }
     }
 
+    void Boom()
+    {
+        GameObject boom = Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        boom.GetComponent<ParticleSystem>().Play();
+    }
 }

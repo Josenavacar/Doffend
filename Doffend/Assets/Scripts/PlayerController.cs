@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(EntityController2D), typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
+    public Animator animator;
+    public bool moveAllow = true; 
+
     public float pixelsPerMeter = 16;
     public float movementSpeed = 32;
 
@@ -67,6 +70,7 @@ public class PlayerController : MonoBehaviour
             incomingValue.y = 0.0f;
 
         _playerInputMovement = incomingValue;
+        animator.SetFloat("Speed", Mathf.Abs(deltaX));
     }
 
     /// <summary>
@@ -80,26 +84,33 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If we're standing on ground, gravity shouldn't be applied.
-        bool shouldResetYVelocity = false;
-
-        if ((_controller.collisions & (EntityController2D.CollisionDirection.cdTop
-                                       | EntityController2D.CollisionDirection.cdBottom)) != 0)
-            shouldResetYVelocity = true;
-
-        if (shouldResetYVelocity)
-            _velocity.y = 0.0f;
-
-        float targetXVelocity = _playerInputMovement.x * movementSpeed;
-        float accelaration = _controller.collisions.HasFlag(EntityController2D.CollisionDirection.cdBottom) ? _accelerationTimeGrounded : _accelerationTimeAirborne;
-        _velocity.x = Mathf.SmoothDamp(_velocity.x, targetXVelocity, ref _velocityXSmoothingState, accelaration);
-        // If we received a jump event since the last update, we perform a jump if possible
-        if (_playerShouldJump && _canJump())
+        if (moveAllow)
         {
-            _velocity.y = _jumpVelocity;
-            _playerShouldJump = false;
-        }
+            // If we're standing on ground, gravity shouldn't be applied.
+            bool shouldResetYVelocity = false;
 
+            if ((_controller.collisions & (EntityController2D.CollisionDirection.cdTop
+                                           | EntityController2D.CollisionDirection.cdBottom)) != 0)
+                shouldResetYVelocity = true;
+
+            if (shouldResetYVelocity)
+                _velocity.y = 0.0f;
+
+            float targetXVelocity = _playerInputMovement.x * movementSpeed;
+            float accelaration = _controller.collisions.HasFlag(EntityController2D.CollisionDirection.cdBottom) ? _accelerationTimeGrounded : _accelerationTimeAirborne;
+            _velocity.x = Mathf.SmoothDamp(_velocity.x, targetXVelocity, ref _velocityXSmoothingState, accelaration);
+
+            // If we received a jump event since the last update, we perform a jump if possible
+            if (_playerShouldJump && _canJump())
+            {
+                _velocity.y = _jumpVelocity;
+                _playerShouldJump = false;
+            }
+        }
+        else
+        {
+            _velocity.x = 0;
+        }
         // Apply gravity to the player
         _velocity.y += _gravity * Time.deltaTime;
 
@@ -112,8 +123,6 @@ public class PlayerController : MonoBehaviour
         else if (_playerInputMovement.x < -0.5f)
             _lastMoveDirection = MoveDirection.mdToLeft;
         _spriteRenderer.flipX = _lastMoveDirection == MoveDirection.mdToLeft;
-
-
     }
 
     bool _canJump()
