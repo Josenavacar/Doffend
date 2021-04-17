@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1903913003793859264}
   - component: {fileID: 6903291346508917773}
   - component: {fileID: -3553567115975411252}
+  - component: {fileID: 4942266469028055494}
   m_Layer: 12
   m_Name: Goblin
   m_TagString: Goblin
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 2
   papa: {fileID: 0}
+  animator: {fileID: 4942266469028055494}
 --- !u!114 &1903913003793859264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c003637480aeed142bf5db520b9cc82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4942266469028055494}
   target: {fileID: 0}
   activateDistance: 50
   pathUpdateSeconds: 0.5
@@ -214,3 +217,22 @@ MonoBehaviour:
   jumpEnabled: 1
   directionLookEnabled: 1
   forceApplied: 15
+--- !u!95 &4942266469028055494
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996819030631688954}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5653844708f53e042b4605627e24fe1d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

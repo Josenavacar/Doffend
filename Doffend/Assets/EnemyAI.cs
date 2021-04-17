@@ -5,6 +5,8 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
+    public Animator animator;
+
     [Header("Pathfinding")]
     public Transform target;
     public float activateDistance = 50f;
@@ -103,6 +105,7 @@ public class EnemyAI : MonoBehaviour
 
         //movement
         rb.AddForce(force);
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
 
         //next waypoint
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
