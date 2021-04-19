@@ -34,7 +34,6 @@ public class WaveSpawn : MonoBehaviour
     public Wave waveStore;
     public GameObject goblinPrefab;
     private int waveCounter;
-
     private Health playerHealth;
 
     private GameObject wavecounter;
@@ -110,6 +109,7 @@ public class WaveSpawn : MonoBehaviour
 
     public void GoblinDied(object sender, EventArgs e)
     {
+
         Score.GetComponent<Score_Update>().score += 10;
         PlayerPrefs.SetInt("score", Score.GetComponent<Score_Update>().score);
     }

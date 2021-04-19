@@ -38,10 +38,9 @@ public class Goblin_Health : MonoBehaviour
     private IEnumerator DeathState()
     {
         _EnemyAI.enabled = false;
-        papa.GetComponent<EnemyManager>().GoblinDeath();
         animator.SetBool("Death", true);
-
         yield return new WaitForSeconds(1);
+        papa.GetComponent<EnemyManager>().GoblinDeath();
         Destroy(gameObject);
     }
 
