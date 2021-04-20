@@ -34,7 +34,7 @@ MonoBehaviour:
   Path: Assets/Audio/Doffend/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637544383406707925
+  lastModified: 637545075237868375
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
   - {fileID: -6244825986038690767}
   StringsBanks:
   - {fileID: 3520857694455053404}
-  stringsBankWriteTime: 637544383406717896
+  stringsBankWriteTime: 637545075237878339
   cacheVersion: 6
 --- !u!114 &3520857694455053404
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   Path: Assets/Audio/Doffend/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637544383406717896
+  lastModified: 637545075237878339
   LoadResult: 0
   FileSizes:
   - Name: Desktop
