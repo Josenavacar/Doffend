@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
+
 
 
 public class Health : MonoBehaviour
@@ -16,9 +18,12 @@ public class Health : MonoBehaviour
 
     public event EventHandler OnPlayerDeath;
 
+    private AudioSource _audioSrc;
+
     void Start()
     {
         UIScript = canvas.GetComponent<Health_UI>();
+        _audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,12 +35,21 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void PlayDamagedSound()
+    {
+        _audioSrc.pitch = Random.Range(1.5f, 1.6f);
+        //play oneshot
+        _audioSrc.PlayOneShot(_audioSrc.clip);
+
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.GetComponent<Enemy>() != null)
         {
             float damage = other.gameObject.GetComponent<Enemy>().enemyDamage;
             health -= damage;
+            PlayDamagedSound();
             UIScript.updateUI();
 
             if(health <= 0)
