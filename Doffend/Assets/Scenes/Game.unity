@@ -807,7 +807,7 @@ MonoBehaviour:
   YMinEnabled: 1
   YMinValue: -7.5
   XMaxEnabled: 1
-  XMaxValue: 11.5
+  XMaxValue: 11.2
   XMinEnabled: 1
   XMinValue: 4.5
 --- !u!81 &592200718
@@ -2716,7 +2716,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 0
+  showGraphs: 1
 --- !u!4 &1952964276
 Transform:
   m_ObjectHideFlags: 0
