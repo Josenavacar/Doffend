@@ -63,6 +63,14 @@ public class shooting : MonoBehaviour
 
     }
 
+    void PlaySecondarySound()
+    {
+        _audioSrc.pitch = Random.Range(2f, 3f);
+        //play oneshot
+        _audioSrc.PlayOneShot(_audioSrc.clip);
+
+    }
+
     IEnumerator CanShoot()
     {
         _canShoot = false;
@@ -117,6 +125,8 @@ public class shooting : MonoBehaviour
     private void FireSecondary()
     {
         if (!_canShoot) return;
+
+        PlaySecondarySound();
 
         Vector2 mousePosition = _playerInput.Player.MousePosition.ReadValue<Vector2>();
         mousePosition = _mainC.ScreenToWorldPoint(mousePosition);
