@@ -13,6 +13,8 @@ public class Goblin_Health : MonoBehaviour
 
     private EnemyAI _EnemyAI;
 
+    private bool coroutineDone = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class Goblin_Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hitPoints <= 0)
+        if(hitPoints <= 0 && !coroutineDone)
         {
             StartCoroutine(DeathState());
         }
@@ -37,10 +39,11 @@ public class Goblin_Health : MonoBehaviour
 
     private IEnumerator DeathState()
     {
+        coroutineDone = true;
         _EnemyAI.enabled = false;
         animator.SetBool("Death", true);
-        yield return new WaitForSeconds(1);
         papa.GetComponent<EnemyManager>().GoblinDeath();
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 

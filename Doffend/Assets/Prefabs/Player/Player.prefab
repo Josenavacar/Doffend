@@ -280,7 +280,7 @@ MonoBehaviour:
   jumpHeight: 0.6
   timeToJumpApex: 0.3
   joyStickDeadZone: 0.5
-  MaxNumInAirJumps: 3
+  MaxNumInAirJumps: 1
 --- !u!114 &368932233303298107
 MonoBehaviour:
   m_ObjectHideFlags: 0

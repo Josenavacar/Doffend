@@ -148,13 +148,18 @@ public class EnemyAI : MonoBehaviour
             {
                 if(gameObject.transform.position.x > target.transform.position.x)
                 {
-                    rb.AddForce(target.transform.position * forceApplied * 2);
+                    Vector2 push = Vector2.zero;
+                    push.y = 1f;
+                    push.x = target.position.x;
+                    rb.AddForce(push * forceApplied);
                 }
                 else
                 {
-                    rb.AddForce(-target.transform.position * forceApplied);
+                    Vector2 push = Vector2.zero;
+                    push.y = 1f;
+                    push.x = -target.position.x;
+                    rb.AddForce(push * forceApplied);
                 }
-                
             }
         }
     }
