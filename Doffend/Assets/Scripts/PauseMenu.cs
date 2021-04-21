@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject HealthUI;
     private PlayerInput playerInput;
+    public GameObject waveSpawn;
 
     private void Awake()
     {
@@ -61,6 +62,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        waveSpawn.GetComponent<WaveSpawn>().OnApplicationQuit();
         SceneManager.LoadScene("Menu");
     }
 }

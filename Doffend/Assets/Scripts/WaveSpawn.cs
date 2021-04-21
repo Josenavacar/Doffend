@@ -24,7 +24,7 @@ public class WaveSpawn : MonoBehaviour
     public List<Wave> waves;
     private int nextWave = 0;
     private float timeElapsed = 0;
-    private GameObject Score;
+    public GameObject score;
 
     public GameObject enemiesParent;
     private EnemyManager enemiesManager;
@@ -35,20 +35,19 @@ public class WaveSpawn : MonoBehaviour
     public GameObject goblinPrefab;
     private int waveCounter;
     private Health playerHealth;
+    public GameObject player;
 
-    private GameObject wavecounter;
+    public GameObject wavecounter;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        Time.timeScale = 1f;
         enemiesManager = enemiesParent.GetComponent<EnemyManager>();
         enemiesManager.OnGoblinDeath += GoblinDied;
         waveCountdown = timeBetweenWaves; 
-        Score = GameObject.Find("Score");
-        playerHealth = GameObject.Find("Player").GetComponent<Health>();
+        playerHealth = player.GetComponent<Health>();
         playerHealth.OnPlayerDeath += resetGoblins;
-
-        wavecounter = GameObject.Find("Wave Counter");
 
         //WavePrime
         wavePrime.amount = 6;
@@ -82,10 +81,10 @@ public class WaveSpawn : MonoBehaviour
         if(state == SpawnState.FINISHED)
         {
             int timeToScore = (int) Mathf.Max(0, 50 - timeElapsed) * 5;
-            Score.GetComponent<Score_Update>().score += timeToScore;
-            PlayerPrefs.SetInt("score", Score.GetComponent<Score_Update>().score);
+            score.GetComponent<Score_Update>().score += timeToScore;
+            PlayerPrefs.SetInt("score", score.GetComponent<Score_Update>().score);
             increaseWave(waveStore);
-            if(waveCounter % 3 == 0)
+            if(waveCounter % 5 == 0)
             {
                 buffGoblins();
             }
@@ -110,8 +109,8 @@ public class WaveSpawn : MonoBehaviour
     public void GoblinDied(object sender, EventArgs e)
     {
 
-        Score.GetComponent<Score_Update>().score += 10;
-        PlayerPrefs.SetInt("score", Score.GetComponent<Score_Update>().score);
+        score.GetComponent<Score_Update>().score += 10;
+        PlayerPrefs.SetInt("score", score.GetComponent<Score_Update>().score);
     }
 
     bool EnemyIsAlive()
@@ -155,6 +154,7 @@ public class WaveSpawn : MonoBehaviour
         }
 
         var newEnemy = Instantiate(_enemy, spawn.position, Quaternion.identity);
+        newEnemy.GetComponent<EnemyAI>().target = playerHealth.gameObject.transform;
         newEnemy.transform.parent = enemiesParent.transform;
         Debug.Log("Spawning enemy: " + _enemy.name);
     }
@@ -191,18 +191,18 @@ public class WaveSpawn : MonoBehaviour
         float damage = goblins.GetComponent<Enemy>().enemyDamage;
         float hp = goblins.GetComponent<Goblin_Health>().hitPoints;
 
-        if(damage < 2.5)
+        if(damage < 2)
         {
             goblins.GetComponent<Enemy>().enemyDamage = damage + .5f;
             goblins.GetComponent<Goblin_Health>().hitPoints = hp + 1;
         }
-        else if(hp < 10)
+        else if(hp < 4)
         {
             goblins.GetComponent<Goblin_Health>().hitPoints = hp + 1;
         }
     }
 
-    void OnApplicationQuit()
+    public void OnApplicationQuit()
     {
         GameObject goblins = goblinPrefab;
 
@@ -210,7 +210,7 @@ public class WaveSpawn : MonoBehaviour
         goblins.GetComponent<Goblin_Health>().hitPoints = 2f;
     }
 
-    void resetGoblins(object sender, EventArgs e)
+    public void resetGoblins(object sender, EventArgs e)
     {
         GameObject goblins = goblinPrefab;
 

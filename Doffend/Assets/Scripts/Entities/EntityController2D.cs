@@ -136,6 +136,10 @@ public class EntityController2D : MonoBehaviour
 
     protected virtual void _performMove(Vector3 velocity)
     {
+        if(velocity == null)
+        {
+            velocity = Vector3.zero;
+        }
         transform.Translate(velocity);
     }
 

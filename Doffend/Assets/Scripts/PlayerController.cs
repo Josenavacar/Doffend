@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
 
     private float _gravity = -20;
-    private Vector3 _velocity;
+    private Vector3 _velocity = Vector3.zero;
     private float _jumpVelocity;
 
     // Variables used in update to update the player state based on input
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _controller = GetComponent<EntityController2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();

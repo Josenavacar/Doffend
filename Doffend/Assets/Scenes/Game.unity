@@ -757,6 +757,7 @@ MonoBehaviour:
   leftSpawn: {fileID: 740256668}
   rightSpawn: {fileID: 2083784667}
   waves: []
+  score: {fileID: 1724112319}
   enemiesParent: {fileID: 1256915808}
   wavePrime:
     name: 
@@ -770,6 +771,8 @@ MonoBehaviour:
     rate: 0
   goblinPrefab: {fileID: 4996819030631688954, guid: 2a78377bbd3761f42b1518037f145a02,
     type: 3}
+  player: {fileID: 1174905257}
+  wavecounter: {fileID: 283788102}
 --- !u!1 &592200716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1196021376}
   HealthUI: {fileID: 1772604707}
+  waveSpawn: {fileID: 503835577}
 --- !u!1 &1724112319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,6 +2848,11 @@ PrefabInstance:
       propertyPath: collisionMask.m_Bits
       value: 4352
       objectReference: {fileID: 0}
+    - target: {fileID: 3705938949811759315, guid: 675882560d9881345ab54fae95b080ed,
+        type: 3}
+      propertyPath: bullets
+      value: 
+      objectReference: {fileID: 399345673}
     - target: {fileID: 7403234530056255076, guid: 675882560d9881345ab54fae95b080ed,
         type: 3}
       propertyPath: m_RootOrder

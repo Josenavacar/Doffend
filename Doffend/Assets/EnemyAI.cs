@@ -36,10 +36,6 @@ public class EnemyAI : MonoBehaviour
 
     public void Start()
     {
-        GameObject Player = GameObject.Find("Player");
-        target = Player.transform;
-        
-
         seeker = GetComponent<Seeker>();
         //Fetch Rigidbody from game object
         rb = GetComponent<Rigidbody2D>();

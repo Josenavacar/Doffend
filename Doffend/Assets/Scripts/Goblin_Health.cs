@@ -40,6 +40,8 @@ public class Goblin_Health : MonoBehaviour
     private IEnumerator DeathState()
     {
         coroutineDone = true;
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         _EnemyAI.enabled = false;
         animator.SetBool("Death", true);
         papa.GetComponent<EnemyManager>().GoblinDeath();
